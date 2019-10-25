@@ -14,7 +14,7 @@ The workshop should take one (1) hour.
 4. Run `npm install`
 5. Run `npm start` in the background
 6. Run `go run ssh.go` in the background
-7. ??
+7. Start at example_1, and proceed to example_3. While going to example_3 complete example_2.
 
 ---
 

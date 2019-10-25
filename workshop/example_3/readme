@@ -8,11 +8,16 @@ ex_1
 
   GDB
     Check assembly layout
+      layout asm
+
     we have no idea what's going on, set a breakpoint beginning
       break main
       run
+      
+      now we have the actual memory addresses!
 
     first interesting thing we see is a branch, let's go check it out.
+    this branch will branch to the end of the program and exit.
       break *0x5555555547e0
       step
 
@@ -54,10 +59,13 @@ ex_1
 
     Useful if you have executable and are trying to figure out what a program does
 
-ex_2
-  patching branch
-
-  You could change each variable to match what you want, but that's a waste of time
+ex_2: patching branch
+  Analysis: what does this do?
+    it looks like there's a ton of branches then it does some stuff and exits.
+    what could these branches do, and where to they go?
+      every branch exists if they pass.
+    
+  You could change each variable to match what you want like before, but that's a waste of time
 
   where does the branch start?
     0x6f2
@@ -88,6 +96,6 @@ ex_3
   you're not always given access to modify programs on a system
 
   check the assembly, watch what it's doing
-  in my ctf challenge it didn't show the hash output, but i could have patched it to do that
+  in my ctf challenge it didn't show the hash output, but i could have patched it to do that or checked the memory
   
 
