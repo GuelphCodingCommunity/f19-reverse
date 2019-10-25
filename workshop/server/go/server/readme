@@ -1,0 +1,9 @@
+Install
+  go get golang.org/x/crypto/ssh
+  go get github.com/kr/pty
+
+Run
+  go run ssh.go
+
+Connect
+  ssh admin@localhost -p 2200

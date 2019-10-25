@@ -1,0 +1,25 @@
+Strings
+
+Get the strings from this file, find a key
+
+ex_1
+  First way
+    strings main
+    finds both
+
+  Better way to see constants
+    Format of a .elf file
+      https://upload.wikimedia.org/wikipedia/commons/e/e4/ELF_Executable_and_Linkable_Format_diagram_by_Ange_Albertini.png
+
+    https://en.wikipedia.org/wiki/Data_segment
+      In computing, a data segment (often denoted .data) is a portion of an object file or the corresponding virtual address space of a program that contains initialized static variables, that is, global variables and static local variables. The size of this segment is determined by the size of the values in the program's source code, and does not change at run time. 
+
+        readelf -x .data ex_1
+          where's the other flag?
+          The data segment is read-write, since the values of variables can be altered at run time. This is in contrast to the read-only data segment (rodata segment or .rodata), which contains static constants rather than variables
+          Ah, it's in .rodata segment
+
+        readelf -x .rodata ex_1
+          Found u
+
+objdump -drwC -Mintel main

@@ -1,0 +1,13 @@
+ctf - introduction to ctf challenges, what they are, and why they're cool
+
+strings - extracting a string from binary files
+
+assembly - introduction to some assembly commands and how they're read by the computer
+c to assembly - show what c code gets converted to in assembly. Branches, for loops, variable setting. Compiling with -g
+objdump - dump assembly of an executable and view it
+
+breakpoints - setting breakpoints at interesting places in c code
+output memory - print memory while a program is running. View variables and their locations in memory
+runtime manipulation - edit memory while programs are running with gdb
+
+closing + other interesting tools - valgrind, radare2

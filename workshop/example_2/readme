@@ -1,0 +1,134 @@
+Assembly
+
+Compile with -S to get assembly code
+Compile with -c to get object file
+  Just the main stuff, nothing is linked yet
+
+There's a ton of instructions
+  https://en.wikipedia.org/wiki/X86_instruction_listings
+
+Registers
+  Computers have a cpu and ram, program is loaded to ram during runtime.
+  Reading from ram is slow
+  Registers store values inside the cpu, so we don't need to ask ram every time we need the value of something
+
+Data Movement Instructions
+  mov - Move
+    Move data from one place to another.
+
+    ex. mov eax, ebx
+      Move the value in ebx to eax
+    ex. mov REG, [x]
+      Moves the value of the memory location where x points to into REG
+      Similar to * in c
+
+  lea - Load effective address
+    The lea instruction places the address specified by its second operand into the register specified by its first operand. Note, the contents of the memory location are not loaded, only the effective address is computed and placed into the register. This is useful for obtaining a pointer into a memory region
+    
+    ex. lea eax, [val]
+      the value val is placed in EAX.
+
+Arithmetic and Logic Instructions
+  add - Integer addition
+  sub - Integer subtraction
+  imul - Integer multiplication
+  idiv - Integer division
+  and, or, xor - Bitwise logical and, or and exclusive or
+
+
+Control Flow Instructions
+  jmp - Jump
+    Transfers program control flow to the instruction at the memory location indicated by the operand.
+
+    ex. jmp begin
+      Jump to the instruction labeled begin.
+
+  cmp - Compare
+    Compare the values of the two specified operands, setting the condition codes in the machine status word appropriately
+
+  jcondition - Conditional Jump
+    je <label> (jump when equal)
+    jne <label> (jump when not equal)
+    jz <label> (jump when last result was zero)
+    jg <label> (jump when greater than)
+    jge <label> (jump when greater than or equal to)
+    jl <label> (jump when less than)
+    jle <label> (jump when less than or equal to) 
+  
+  call, ret - Subroutine call and return
+    Similar to a function in c
+
+Resource: https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+
+
+Objdump
+  Dump the assembly of a compiled file
+  Works on object files, .elf executables, and more!
+
+
+objdump -drwC -Mintel ex_1.o
+  Block 1 - Addition -> add
+
+  Block 2 - Subtraction -> sub
+    Note, the order is important here
+
+  Block 3 - Pointer -> LEA
+
+  Block 4 - If statement -> jumps
+    compare is used here to set registers
+    jump checks registers that were set by compare
+
+  Block 5 - For loop
+    Jumps to check conditions
+    increase b, write b
+    increase a
+
+  Block 6 - While loop
+    Note, this is identical to block 5
+
+
+Secret
+  objdump -drwC -Mintel secret.o
+  put this c code in order to match the assembly. How many jumps will be done?
+
+  // Not ordered
+  1. int a;
+
+  2. if (a == 0) {
+    a++;
+  }
+
+  3. b = 6;
+
+  4. a = a - 5;
+  5. a = 5;
+
+  6. int b;
+  7. b = b - 2;
+
+  8. if (b > 0) {
+    b++;
+  }
+
+
+  // Finished
+  1. int a;
+  6. int b;
+
+  5. a = 5;
+  3. b = 6;
+
+  4. a = a - 5;
+
+  2. if (a == 0) {
+    a++;
+  }
+
+  8. if (b > 0) {
+    b++;
+  }
+
+  7. b = b - 2;
+
+
+  // No jumps will be done

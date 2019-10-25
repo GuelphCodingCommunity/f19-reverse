@@ -1,0 +1,93 @@
+Manipulating branching
+
+ex_1
+  Check for strings
+    strings ex_1
+
+    no useful strings :(
+
+  GDB
+    Check assembly layout
+    we have no idea what's going on, set a breakpoint beginning
+      break main
+      run
+
+    first interesting thing we see is a branch, let's go check it out.
+      break *0x5555555547e0
+      step
+
+    we probably don't want to branch all the way to the bottom, how can we stop this?
+    we want the jne to fail, meaning the two values need to be equal
+    what are we comparing?
+      cmp    -0x90(%rbp),%eax
+
+    check values with
+      x $rbp-0x90
+        examine
+        for a memory address
+      p $eax
+        print
+        for a register
+
+    let's set eax to 0 and see what happens
+      set $eax=0
+      stepi
+      stepi
+
+      we're in boys
+
+      continue
+
+
+  Patching solution
+    objdump -drwC -Mintel ex_1
+    ghex ex_1
+
+    http://www.unixwiz.net/techtips/x86-jumps.html
+
+    let's switch the jne to a je
+      85 -> 84
+    
+    save + run
+
+    it works!
+
+    Useful if you have executable and are trying to figure out what a program does
+
+ex_2
+  patching branch
+
+  You could change each variable to match what you want, but that's a waste of time
+
+  where does the branch start?
+    0x6f2
+  where does it go to?
+    0x7d1
+  
+  0x7d1 - 0x6f2 = 223 = 0xDF
+  
+  why is this 6 more than the distance we need? It accounts for the length of this instruction!
+
+  Looks like the second part of jumps is the distance down, starting from after the jump condition
+
+  Where do we want to jump to?
+    0x720
+
+    0x720 - 0x6f2 = 46 = 0x2E
+
+    Subtract 6 for the length of the jump address
+
+    0x28 is the distance we need
+
+    replace d9 with 28
+
+    Wow! a flag
+
+ex_3
+  Similar to ctf challenge I did, although that challenge was with arm assembly.
+  you're not always given access to modify programs on a system
+
+  check the assembly, watch what it's doing
+  in my ctf challenge it didn't show the hash output, but i could have patched it to do that
+  
+
