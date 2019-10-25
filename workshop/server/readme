@@ -1,0 +1,10 @@
+server.js contains a simple express.js server that will serve the tar files containing each exercise.
+
+Exercise 1:
+    GET /1337h4x0r
+
+Exercise 2:
+    GET /1337h4x0r2
+
+Exercise 3:
+    GET /1337h4x0r3
