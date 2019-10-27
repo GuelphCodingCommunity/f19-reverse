@@ -6,4 +6,4 @@ Run
   go run ssh.go
 
 Connect
-  ssh admin@localhost -p 2200
+  ssh localhost -p 2222

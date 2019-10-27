@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "buffer-equal-constant-time": "^1.0.1",
+    "express": "^4.17.1",
+    "node-ssh": "^6.0.0",
+    "uptimer": "^0.1.2"
   }
 }
