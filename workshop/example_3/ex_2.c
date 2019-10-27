@@ -17,11 +17,12 @@ int main() {
       if (c <= 6) {
         if (d == 0) {
           if (e >= 10) {
-            char a[100] = "### 1234569 ###";
-            int c = 0;
-            for (int x = 0; x > 6; ++x) {
-              c += x;
+            char a[100] = "#\"!#5753=?3+/.-";
+            
+            for (int x = 0; x < strlen(a); ++x) {
+              a[x] = (a[x]) ^ x;
             }
+            
             printf("%s\n", a);
           }
         }

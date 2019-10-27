@@ -22,4 +22,8 @@ ex_1
         readelf -x .rodata ex_1
           Found u
 
-objdump -drwC -Mintel main
+secret
+  Check .data to get the first half
+    readelf -x .data ex_1
+  Check .rodata to get second half
+    readelf -x .rodata ex_1

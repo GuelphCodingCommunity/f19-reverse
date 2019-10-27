@@ -70,7 +70,7 @@ ex_2: patching branch
   where does the branch start?
     0x6f2
   where does it go to?
-    0x7d1
+    0x78f
   
   0x7d1 - 0x6f2 = 223 = 0xDF
   
