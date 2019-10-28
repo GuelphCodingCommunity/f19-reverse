@@ -3,7 +3,7 @@
 
 int main() {
     char *buf;
-    buf = malloc(1024);
+    buf = malloc(9999999999999999);
     printf("Enter some text: ");
     fgets(buf, 1024, stdin);
     printf("You wrote: %s\n", buf);
